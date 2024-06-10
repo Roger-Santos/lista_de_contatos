@@ -12,23 +12,30 @@ const ListaContatos = () => {
     console.log(criteria)
 
     if (criteria === 'normal') {
-      return itens
+      if (term !== undefined) {
+        filtroContatos = filtroContatos.filter(
+          (item) =>
+            item.nomeCompleto.toLowerCase().search(term.toLowerCase()) >= 0
+        )
+        return filtroContatos
+      } else {
+        return itens
+      }
     } else {
       filtroContatos = filtroContatos.filter(
         (item) => item.status.toLowerCase().search('favorito') >= 0
       )
-      return filtroContatos
-    }
 
-    /*if (term !== undefined) {
-      filtroContatos = filtroContatos.filter(
-        (item) =>
-          item.nomeCompleto.toLowerCase().search(term.toLowerCase()) >= 0
-      )
-      return filtroContatos
-    } else {
-      return itens
-    }*/
+      if (term !== undefined) {
+        filtroContatos = filtroContatos.filter(
+          (item) =>
+            item.nomeCompleto.toLowerCase().search(term.toLowerCase()) >= 0
+        )
+        return filtroContatos
+      } else {
+        return filtroContatos
+      }
+    }
   }
 
   const contatos = filterContatos()
